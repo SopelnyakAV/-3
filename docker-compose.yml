@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: my_mongo
+    networks:
+      - my_network
+    volumes:
+      - mongo_data:/data/db
+
+  node_app:
+    image: node:16
+    container_name: my_node_app
+    networks:
+      - my_network
+    volumes:
+      - ./app:/usr/src/app
+    working_dir: /usr/src/app
+    command: bash -c "npm install && npm start"
+    depends_on:
+      - mongo
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  mongo_data:
