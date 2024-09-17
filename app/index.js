@@ -4,6 +4,8 @@ async function main() {
   const uri = "mongodb://my_mongo:27017"; // строка подключения к монго
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); // создаем клиент монго
 
+  console.log("Hello!!!")
+
   try {
     await client.connect(); // подключаемся к монго
     console.log("Connected to MongoDB");
